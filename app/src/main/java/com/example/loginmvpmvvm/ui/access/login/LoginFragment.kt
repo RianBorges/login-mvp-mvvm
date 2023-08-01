@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
-import com.example.loginmvpmvvm.R
+import com.example.loginmvpmvvm.common.extensions.setMask
 import com.example.loginmvpmvvm.databinding.FragmentLoginBinding
+import com.example.loginmvpmvvm.ui.MainActivity
 import com.example.loginmvpmvvm.ui.home.HomeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,49 +24,46 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        viewModel.getUsersCoroutines()
+//      viewModel.getUsersCoroutines()
 
         viewModel.errorMsg.observe(viewLifecycleOwner){
-
-            binding.etEmail.doAfterTextChanged {
-                binding.tilEmail.isErrorEnabled = false
-            }
-
-            binding.etPassword.doAfterTextChanged {
-                binding.tilPassword.isErrorEnabled = false
-            }
-        }
-
-        viewModel.usersLiveData.observe(viewLifecycleOwner){
-
+            binding.etEmail.doAfterTextChanged { binding.tilEmail.isErrorEnabled = false }
+            binding.etPassword.doAfterTextChanged { binding.tilPassword.isErrorEnabled = false }
         }
 
         viewModel.signInSuccess.observe(viewLifecycleOwner){
-            it?.let {
+            it?.idUser?.let {
                 val intent = Intent(requireContext(), HomeActivity::class.java).apply {
-                    putExtra("id", it.idUser)
+                    putExtra("id", it)
                 }
                 startActivity(intent)
             }?: kotlin.run {
-                Toast.makeText(requireContext(), "Login e Senha Inválido", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Email e Senha Inválido", Toast.LENGTH_SHORT).show()
             }
         }
 
-        val button = view.findViewById<Button>(R.id.btn_get_data)
-
-        button.setOnClickListener{
-            val email: String = view.findViewById<EditText>(R.id.et_email).text.toString()
-            val password: String = view.findViewById<EditText>(R.id.et_password).text.toString()
+        binding.btnEnter.setOnClickListener{
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
 
             viewModel.signIn(email = email, password = password)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fillFields()
+    }
+
+    fun fillFields(){
+        binding.etEmail.setText((activity as MainActivity).mail)
+        binding.etPassword.setText((activity as MainActivity).pass)
     }
 
     override fun onDestroyView() {

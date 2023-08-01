@@ -17,20 +17,11 @@ class HomeViewModel(
     val userData = MutableLiveData<UserResponse?>()
 
     fun getUser(idUser: String) = viewModelScope.launch {
-
         when (val response = repository.getUser(idUser = idUser)) {
-
-            is ResultState.Success -> {
-                userData.value = response.data
-            }
-
-            is ResultState.Error -> {
-                userData.value = null
-            }
-
-            is ResultState.Failure -> {
-                userData.value = null
-            }
+            is ResultState.Success -> userData.value = response.data
+            is ResultState.Error -> userData.value = null
+            is ResultState.Failure -> userData.value = null
+            else -> Unit
         }
     }
 }

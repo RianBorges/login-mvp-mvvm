@@ -8,6 +8,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
         intent?.getStringExtra("id")?.let { id ->
             supportFragmentManager.beginTransaction().add(
                 R.id.contentFragment,

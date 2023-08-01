@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.loginmvpmvvm.ui.access.register.RegisterFragment
+import com.example.loginmvpmvvm.ui.access.signup.SignUpFragment
 import com.example.loginmvpmvvm.ui.access.login.LoginFragment
 
 class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle): FragmentStateAdapter(fragmentManager, lifecycle) {
@@ -19,7 +19,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle): 
                 LoginFragment()
             }
             1 -> {
-                RegisterFragment()
+                SignUpFragment()
             }
 
             else -> {
