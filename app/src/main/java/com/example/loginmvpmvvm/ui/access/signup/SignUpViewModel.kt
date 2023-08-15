@@ -24,8 +24,8 @@ class SignUpViewModel(private val repository: AccessRepository): ViewModel() {
         when (val response = repository.register(signUpRequest)) {
                 is ResultState.Success ->  signUpSuccess.value = response.data
                 is ResultState.Error ->  signUpError.value = true
-            is ResultState.Failure ->  signUpFail.value = true
-            is ResultState.Exists ->  signUpExists.value = true
+                is ResultState.Failure ->  signUpFail.value = true
+                is ResultState.Exists ->  signUpExists.value = true
         }
     }
 }
