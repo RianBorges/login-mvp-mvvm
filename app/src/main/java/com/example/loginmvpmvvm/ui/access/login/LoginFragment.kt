@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
-import com.example.loginmvpmvvm.common.extensions.setMask
 import com.example.loginmvpmvvm.databinding.FragmentLoginBinding
 import com.example.loginmvpmvvm.ui.MainActivity
 import com.example.loginmvpmvvm.ui.home.HomeActivity
@@ -30,29 +29,53 @@ class LoginFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//      viewModel.getUsersCoroutines()
 
-        viewModel.errorMsg.observe(viewLifecycleOwner){
-            binding.etEmail.doAfterTextChanged { binding.tilEmail.isErrorEnabled = false }
-            binding.etPassword.doAfterTextChanged { binding.tilPassword.isErrorEnabled = false }
+        handleDisableError()
+        handleSignInSuccess()
+        handleSignInErrorAndFail()
+
+        binding.btnEnter.setOnClickListener{
+            binding.progressBar.visibility = View.VISIBLE
+            handleSignIn()
         }
+    }
 
-        viewModel.signInSuccess.observe(viewLifecycleOwner){
+    private fun handleSignIn() {
+        val email = binding.etEmail.text.toString()
+        val password = binding.etPassword.text.toString()
+
+        viewModel.signIn(email = email, password = password)
+    }
+
+    private fun handleSignInSuccess() {
+        viewModel.signInSuccess.observe(viewLifecycleOwner) {
             it?.idUser?.let {
                 val intent = Intent(requireContext(), HomeActivity::class.java).apply {
                     putExtra("id", it)
                 }
                 startActivity(intent)
-            }?: kotlin.run {
-                Toast.makeText(requireContext(), "Email e Senha Inválido", Toast.LENGTH_SHORT).show()
+            } ?: kotlin.run {
+                Toast.makeText(requireContext(), "Email e Senha Inválido", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
+    }
 
-        binding.btnEnter.setOnClickListener{
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
+    private fun handleDisableError() {
+        viewModel.errorMsg.observe(viewLifecycleOwner) {
+            binding.etEmail.doAfterTextChanged { binding.tilEmail.isErrorEnabled = false }
+            binding.etPassword.doAfterTextChanged { binding.tilPassword.isErrorEnabled = false }
+        }
+    }
 
-            viewModel.signIn(email = email, password = password)
+    private fun handleSignInErrorAndFail(){
+        viewModel.signInError.observe(viewLifecycleOwner) {
+            if (it) Toast.makeText(requireContext(), "Houve Um Erro", Toast.LENGTH_SHORT).show()
+            binding.progressBar.visibility = View.GONE
+        }
+        viewModel.signInFail.observe(viewLifecycleOwner) {
+            if (it) Toast.makeText(requireContext(), "Houve Uma Falha", Toast.LENGTH_SHORT).show()
+            binding.progressBar.visibility = View.GONE
         }
     }
 

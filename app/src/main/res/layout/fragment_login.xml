@@ -11,30 +11,30 @@
         android:id="@+id/title_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:textStyle="bold"
-        android:textSize="32sp"
+        android:textSize="@dimen/size_32sp"
         android:textColor="@color/black"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="@dimen/space_16dp"/>
 
    <com.google.android.material.textfield.TextInputLayout
        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
        android:id="@+id/til_email"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_marginHorizontal="32dp"
-       android:layout_marginTop="32dp"
+       android:layout_marginHorizontal="@dimen/space_32dp"
+       android:layout_marginTop="@dimen/space_32dp"
        android:layout_below="@id/title_login"
        app:errorEnabled="false">
 
        <com.google.android.material.textfield.TextInputEditText
            android:id="@+id/et_email"
            android:layout_width="match_parent"
-           android:layout_height="56dp"
+           android:layout_height="@dimen/space_56dp"
            android:maxLines="1"
            android:maxLength="55"
-           android:hint="Email"
+           android:hint="@string/email"
            android:inputType="textEmailAddress"/>
    </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,35 +43,43 @@
         android:id="@+id/til_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/space_16dp"
         android:layout_below="@id/til_email"
-        android:layout_marginHorizontal="32dp"
+        android:layout_marginHorizontal="@dimen/space_32dp"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@android:color/holo_blue_light"
-        app:boxStrokeColor="@color/black"
         app:boxStrokeWidth="1dp"
-        app:hintTextColor="@android:color/holo_red_light"
         app:errorEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="@dimen/space_56dp"
             android:maxLines="1"
             android:maxLength="16"
-            android:hint="Senha"
+            android:hint="@string/passsword"
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_enter"
+        android:background="@drawable/bg_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/til_password"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="@dimen/space_64dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="32dp"
-        android:text="Entrar"
-        />
+        android:text="@string/enter" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_enter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/space_24dp"
+        android:progressTint="@color/black"
+        android:visibility="gone"/>
 </RelativeLayout>
