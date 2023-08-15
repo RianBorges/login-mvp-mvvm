@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
-import com.example.loginmvpmvvm.common.extensions.setMask
 import com.example.loginmvpmvvm.databinding.FragmentLoginBinding
 import com.example.loginmvpmvvm.ui.MainActivity
 import com.example.loginmvpmvvm.ui.home.HomeActivity
@@ -30,7 +29,6 @@ class LoginFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//      viewModel.getUsersCoroutines()
 
         viewModel.errorMsg.observe(viewLifecycleOwner){
             binding.etEmail.doAfterTextChanged { binding.tilEmail.isErrorEnabled = false }
