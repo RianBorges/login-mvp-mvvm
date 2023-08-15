@@ -38,9 +38,7 @@ class SignUpFragment : Fragment() {
         handleSignUpSuccess()
         handleMessage()
 
-        val button = binding.btnCadastrar
-
-        button.setOnClickListener {
+        binding.btnCadastrar.setOnClickListener {
             handleSignUp()
         }
     }
@@ -98,9 +96,7 @@ class SignUpFragment : Fragment() {
     private fun getTypeFromUser() {
         binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             val radio = group.findViewById(checkedId) as RadioButton
-            if (radio.isChecked) {
-                type = radio.text.toString()
-            }
+            if (radio.isChecked) { type = radio.text.toString() }
         }
     }
 
