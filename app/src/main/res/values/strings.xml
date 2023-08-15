@@ -2,5 +2,17 @@
     <string name="app_name">Login Mvp Mvvm</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tela_cadastro">Tela Cadastro</string>
+    <string name="register_screen">Tela Cadastro</string>
+    <string name="passsword">Senha:</string>
+    <string name="email">Email:</string>
+    <string name="login">Login</string>
+    <string name="enter">Entrar</string>
+    <string name="disciple">Discipulo</string>
+    <string name="leader">Líder</string>
+    <string name="birthdate">Data De Nascimento:</string>
+    <string name="name">Nome:</string>
+    <string name="number_phone">Telefone:</string>
+    <string name="confirm_password">Confirmar Senha:</string>
+    <string name="register">Cadastrar</string>
+
 </resources>

@@ -15,8 +15,8 @@ class LoginViewModel(
 
     val errorMsg = MutableLiveData<String>()
     val signInSuccess = MutableLiveData<SignInResponse?>()
-    private val signInError = MutableLiveData(false)
-    private val signInFail = MutableLiveData(false)
+    val signInError = MutableLiveData(false)
+    val signInFail = MutableLiveData(false)
 
     fun signIn(email: String, password: String) = viewModelScope.launch {
 
