@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.loginmvpmvvm.adapters.ViewPagerAdapter
 import com.example.loginmvpmvvm.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -19,9 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setUpWithTabs(){
-
         val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
-
         binding.viewPager.adapter = adapter
 
         TabLayoutMediator(binding.tabLayout,binding.viewPager){tab,position ->

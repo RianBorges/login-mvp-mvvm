@@ -4,7 +4,6 @@ import com.example.loginmvpmvvm.common.ResultState
 import com.example.loginmvpmvvm.model.UserResponse
 import com.example.loginmvpmvvm.retrofit.Api
 
-
 class HomeRepositoryImpl(
     private val api: Api
 ): HomeRepository{
@@ -20,11 +19,8 @@ class HomeRepositoryImpl(
         }catch (t: Throwable){
             ResultState.Failure(t)
         }
-
     }
-
 }
-
 
 interface HomeRepository {
     suspend fun getUser(idUser: String): ResultState<UserResponse?>
