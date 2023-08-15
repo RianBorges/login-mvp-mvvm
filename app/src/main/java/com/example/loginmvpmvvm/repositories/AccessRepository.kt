@@ -38,7 +38,6 @@ class AccessRepositoryImpl(
             ResultState.Failure(t)
         }
     }
-
 }
 
 interface AccessRepository {

@@ -8,12 +8,9 @@ import com.example.loginmvpmvvm.model.UserResponse
 import com.example.loginmvpmvvm.repositories.HomeRepository
 import kotlinx.coroutines.launch
 
-
 class HomeViewModel(
     private val repository: HomeRepository
 ) : ViewModel() {
-
-    val errorMsg = MutableLiveData<String>()
     val userData = MutableLiveData<UserResponse?>()
 
     fun getUser(idUser: String) = viewModelScope.launch {
