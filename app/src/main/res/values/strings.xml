@@ -13,5 +13,6 @@
     <string name="name">Nome:</string>
     <string name="number_phone">Telefone:</string>
     <string name="confirm_password">Confirmar Senha:</string>
+    <string name="register">Cadastrar</string>
 
 </resources>

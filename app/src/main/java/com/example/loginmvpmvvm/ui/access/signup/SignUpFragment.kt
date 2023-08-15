@@ -39,6 +39,7 @@ class SignUpFragment : Fragment() {
         handleMessage()
 
         binding.btnCadastrar.setOnClickListener {
+            binding.progressBar.setVisibility(View.VISIBLE)
             handleSignUp()
         }
     }
@@ -59,19 +60,22 @@ class SignUpFragment : Fragment() {
     private fun handleMessage() {
         viewModel.signUpError.observe(viewLifecycleOwner) {
             if (it) Toast.makeText(requireContext(), "Houve Um Erro", Toast.LENGTH_SHORT).show()
+            binding.progressBar.visibility = View.GONE
         }
         viewModel.signUpFail.observe(viewLifecycleOwner) {
             if (it) Toast.makeText(requireContext(), "Houve Uma Falha", Toast.LENGTH_SHORT).show()
+            binding.progressBar.visibility = View.GONE
         }
         viewModel.signUpExists.observe(viewLifecycleOwner) {
-            if (it) Toast.makeText(requireContext(), "Email Já Registrado", Toast.LENGTH_SHORT)
-                .show()
+            if (it) Toast.makeText(requireContext(), "Email Já Registrado", Toast.LENGTH_SHORT).show()
+            binding.progressBar.visibility = View.GONE
         }
     }
 
     private fun handleSignUpSuccess() {
         viewModel.signUpSuccess.observe(viewLifecycleOwner) {
             it?.let {
+                binding.progressBar.visibility = View.GONE
                 (activity as MainActivity).openSignIn(
                     binding.etMail.text.toString(),
                     binding.etPass.text.toString()
