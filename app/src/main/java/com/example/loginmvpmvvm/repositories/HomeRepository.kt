@@ -14,7 +14,7 @@ class HomeRepositoryImpl(
         if (response.isSuccessful){
             ResultState.Success(response.body())
         } else {
-            ResultState.Error("404", "Usuário não encontrado")
+            ResultState.Error
         }
         }catch (t: Throwable){
             ResultState.Failure(t)
