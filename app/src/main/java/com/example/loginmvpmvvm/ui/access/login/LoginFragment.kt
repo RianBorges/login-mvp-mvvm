@@ -31,8 +31,8 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         handleDisableError()
-        handleSignInSuccess()
-        handleSignInErrorAndFail()
+        handleLoginSuccess()
+        handleLoginError()
 
         binding.btnEnter.setOnClickListener{
             binding.progressBar.visibility = View.VISIBLE
@@ -47,7 +47,7 @@ class LoginFragment : Fragment() {
         viewModel.signIn(email = email, password = password)
     }
 
-    private fun handleSignInSuccess() {
+    private fun handleLoginSuccess() {
         viewModel.signInSuccess.observe(viewLifecycleOwner) {
             it?.idUser?.let {
                 val intent = Intent(requireContext(), HomeActivity::class.java).apply {
@@ -68,13 +68,17 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun handleSignInErrorAndFail(){
+    private fun handleLoginError(){
         viewModel.signInError.observe(viewLifecycleOwner) {
             if (it) Toast.makeText(requireContext(), "Houve Um Erro", Toast.LENGTH_SHORT).show()
             binding.progressBar.visibility = View.GONE
         }
         viewModel.signInFail.observe(viewLifecycleOwner) {
             if (it) Toast.makeText(requireContext(), "Houve Uma Falha", Toast.LENGTH_SHORT).show()
+            binding.progressBar.visibility = View.GONE
+        }
+        viewModel.notFoundError.observe(viewLifecycleOwner){
+            if (it) Toast.makeText(requireContext(), "Usuário Não Encontrado", Toast.LENGTH_SHORT).show()
             binding.progressBar.visibility = View.GONE
         }
     }

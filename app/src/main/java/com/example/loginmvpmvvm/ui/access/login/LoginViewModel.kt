@@ -16,6 +16,7 @@ class LoginViewModel(
     val errorMsg = MutableLiveData<String>()
     val signInSuccess = MutableLiveData<SignInResponse?>()
     val signInError = MutableLiveData(false)
+    val notFoundError = MutableLiveData(false)
     val signInFail = MutableLiveData(false)
 
     fun signIn(email: String, password: String) = viewModelScope.launch {
@@ -24,6 +25,7 @@ class LoginViewModel(
         when (val response = repository.signIn(signInRequest)) {
             is ResultState.Success -> signInSuccess.value = response.data
             is ResultState.Error -> signInError.value = true
+            is ResultState.NotFound -> notFoundError.value = true
             is ResultState.Failure -> signInFail.value = true
             else -> Unit
         }

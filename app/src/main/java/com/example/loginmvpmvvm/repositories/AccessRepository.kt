@@ -14,10 +14,12 @@ class AccessRepositoryImpl(
     override suspend fun signIn(body: SignInRequest): ResultState<SignInResponse> {
         return try {
             val response = api.signIn(body)
-            if (response.isSuccessful) {
+            if (response.code() == 200) {
                 ResultState.Success(response.body()!!)
+            }else if (response.code() == 404){
+                ResultState.NotFound
             } else {
-                ResultState.Error("404", "Usuário ou senha inválida")
+                ResultState.Error
             }
         } catch (t: Throwable) {
             ResultState.Failure(t)
@@ -32,7 +34,7 @@ class AccessRepositoryImpl(
             } else if (response.code() == 409){
                 ResultState.Exists
             } else {
-                ResultState.Error("404", "Usuário ou senha inválida")
+                ResultState.Error
             }
         } catch (t: Throwable) {
             ResultState.Failure(t)
