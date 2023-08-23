@@ -1,10 +1,13 @@
 package com.example.loginmvpmvvm.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.loginmvpmvvm.adapters.ViewPagerAdapter
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.loginmvpmvvm.R
 import com.example.loginmvpmvvm.databinding.ActivityMainBinding
-import com.google.android.material.tabs.TabLayoutMediator
+import com.example.loginmvpmvvm.ui.splash.SplashFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,29 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setUpWithTabs()
+
     }
-
-    fun setUpWithTabs(){
-        val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
-        binding.viewPager.adapter = adapter
-
-        TabLayoutMediator(binding.tabLayout,binding.viewPager){tab,position ->
-            when (position){
-                0 ->{
-                    tab.text = "Login"
-                }
-                1 ->{
-                    tab.text = "Cadastro"
-                }
-            }
-        }.attach()
-    }
-
-    fun openSignIn(mail: String, pass: String) {
-        this.mail = mail
-        this.pass = pass
-        binding.viewPager.currentItem = 0
-    }
-
 }

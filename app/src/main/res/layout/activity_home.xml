@@ -10,10 +10,5 @@
     android:id="@+id/contentFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
-<!--    <fragment-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        tools:layout="@layout/fragment_home"-->
-<!--        android:name="com.example.loginmvpmvvm.ui.home.HomeFragment"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
