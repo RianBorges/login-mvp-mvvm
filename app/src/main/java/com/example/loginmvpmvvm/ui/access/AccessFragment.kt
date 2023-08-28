@@ -1,14 +1,14 @@
 package com.example.loginmvpmvvm.ui.access
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.loginmvpmvvm.R
+import androidx.fragment.app.Fragment
 import com.example.loginmvpmvvm.adapters.ViewPagerAdapter
 import com.example.loginmvpmvvm.databinding.FragmentAccessBinding
-import com.example.loginmvpmvvm.databinding.FragmentHomeBinding
+import com.example.loginmvpmvvm.ui.access.login.LoginFragment
+import com.example.loginmvpmvvm.ui.access.signup.SignUpFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class AccessFragment : Fragment() {
@@ -23,21 +23,20 @@ class AccessFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAccessBinding.inflate(inflater, container, false)
+
         setUpWithTabs()
         return binding.root
     }
-    fun setUpWithTabs(){
-        val adapter = ViewPagerAdapter(parentFragmentManager, lifecycle)
+
+    fun setUpWithTabs() {
+        val adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
+        adapter.listFragments = listOf(LoginFragment.newInstance(), SignUpFragment.newInstance())
         binding.viewPager.adapter = adapter
 
-        TabLayoutMediator(binding.tabLayout,binding.viewPager){tab,position ->
-            when (position){
-                0 ->{
-                    tab.text = "Login"
-                }
-                1 ->{
-                    tab.text = "Cadastro"
-                }
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Login"
+                1 -> tab.text = "Cadastro"
             }
         }.attach()
     }
