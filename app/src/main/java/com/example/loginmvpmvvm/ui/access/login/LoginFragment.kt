@@ -3,14 +3,12 @@ package com.example.loginmvpmvvm.ui.access.login
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.Fragment
 import com.example.loginmvpmvvm.databinding.FragmentLoginBinding
-import com.example.loginmvpmvvm.ui.MainActivity
 import com.example.loginmvpmvvm.ui.access.AccessFragment
 import com.example.loginmvpmvvm.ui.home.HomeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
