@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import com.example.loginmvpmvvm.databinding.FragmentLoginBinding
 import com.example.loginmvpmvvm.ui.MainActivity
+import com.example.loginmvpmvvm.ui.access.AccessFragment
 import com.example.loginmvpmvvm.ui.home.HomeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -27,6 +29,7 @@ class LoginFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -34,7 +37,7 @@ class LoginFragment : Fragment() {
         handleLoginSuccess()
         handleLoginError()
 
-        binding.btnEnter.setOnClickListener{
+        binding.btnEnter.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
             handleSignIn()
         }
@@ -68,7 +71,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun handleLoginError(){
+    private fun handleLoginError() {
         viewModel.signInError.observe(viewLifecycleOwner) {
             if (it) Toast.makeText(requireContext(), "Houve Um Erro", Toast.LENGTH_SHORT).show()
             binding.progressBar.visibility = View.GONE
@@ -77,8 +80,9 @@ class LoginFragment : Fragment() {
             if (it) Toast.makeText(requireContext(), "Houve Uma Falha", Toast.LENGTH_SHORT).show()
             binding.progressBar.visibility = View.GONE
         }
-        viewModel.notFoundError.observe(viewLifecycleOwner){
-            if (it) Toast.makeText(requireContext(), "Usuário Não Encontrado", Toast.LENGTH_SHORT).show()
+        viewModel.notFoundError.observe(viewLifecycleOwner) {
+            if (it) Toast.makeText(requireContext(), "Usuário Não Encontrado", Toast.LENGTH_SHORT)
+                .show()
             binding.progressBar.visibility = View.GONE
         }
     }
@@ -88,13 +92,19 @@ class LoginFragment : Fragment() {
         fillFields()
     }
 
-    fun fillFields(){
-        binding.etEmail.setText((activity as MainActivity).mail)
-        binding.etPassword.setText((activity as MainActivity).pass)
+    fun fillFields() {
+        val email = (parentFragment as AccessFragment).mail
+        val pass = (parentFragment as AccessFragment).pass
+        binding.etEmail.setText(email)
+        binding.etPassword.setText(pass)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        fun newInstance() = LoginFragment()
     }
 }
