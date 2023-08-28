@@ -23,16 +23,18 @@ class AccessFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAccessBinding.inflate(inflater, container, false)
+
         setUpWithTabs()
         return binding.root
     }
-    fun setUpWithTabs(){
+
+    fun setUpWithTabs() {
         val adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
         adapter.listFragments = listOf(LoginFragment.newInstance(), SignUpFragment.newInstance())
         binding.viewPager.adapter = adapter
 
-        TabLayoutMediator(binding.tabLayout,binding.viewPager){tab,position ->
-            when (position){
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            when (position) {
                 0 -> tab.text = "Login"
                 1 -> tab.text = "Cadastro"
             }
