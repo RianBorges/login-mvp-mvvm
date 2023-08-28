@@ -9,22 +9,12 @@ import com.example.loginmvpmvvm.ui.access.login.LoginFragment
 
 class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle): FragmentStateAdapter(fragmentManager, lifecycle) {
 
+    var listFragments: List<Fragment> = listOf()
     override fun getItemCount(): Int {
         return 2
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-             0 ->{
-                LoginFragment()
-            }
-            1 -> {
-                SignUpFragment()
-            }
-
-            else -> {
-                Fragment()
-            }
-        }
+        return listFragments[position]
     }
 }
