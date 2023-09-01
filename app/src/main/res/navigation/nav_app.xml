@@ -20,23 +20,42 @@
         android:id="@+id/nav_access_fragment"
         android:name="com.example.loginmvpmvvm.ui.access.AccessFragment"
         android:label="fragment_access"
-        tools:layout="@layout/fragment_access" />
-    <fragment
-        android:id="@+id/nav_login_fragment"
-        android:name="com.example.loginmvpmvvm.ui.access.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login">
+        tools:layout="@layout/fragment_access">
         <action
-            android:id="@+id/action_loginFragment_to_signUpFragment"
-            app:destination="@id/nav_sign_up_fragment" />
+            android:id="@+id/action_nav_access_fragment_to_nav_home_fragment"
+            app:destination="@id/nav_home_fragment" />
     </fragment>
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_login_fragment"-->
+<!--        android:name="com.example.loginmvpmvvm.ui.access.login.LoginFragment"-->
+<!--        android:label="fragment_login"-->
+<!--        tools:layout="@layout/fragment_login">-->
+<!--        <action-->
+<!--            android:id="@+id/action_loginFragment_to_signUpFragment"-->
+<!--            app:destination="@id/nav_sign_up_fragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_nav_login_fragment_to_nav_home_fragment"-->
+<!--            app:destination="@id/nav_home_fragment" />-->
+<!--    </fragment>-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_sign_up_fragment"-->
+<!--        android:name="com.example.loginmvpmvvm.ui.access.signup.SignUpFragment"-->
+<!--        android:label="SignUpFragment"-->
+<!--        tools:layout="@layout/fragment_signup">-->
+<!--        <action-->
+<!--            android:id="@+id/action_nav_sign_up_fragment_to_nav_login_fragment"-->
+<!--            app:destination="@id/nav_login_fragment" />-->
+<!--    </fragment>-->
+
     <fragment
-        android:id="@+id/nav_sign_up_fragment"
-        android:name="com.example.loginmvpmvvm.ui.access.signup.SignUpFragment"
-        android:label="SignUpFragment"
-        tools:layout="@layout/fragment_signup">
-        <action
-            android:id="@+id/action_nav_sign_up_fragment_to_nav_login_fragment"
-            app:destination="@id/nav_login_fragment" />
+        android:id="@+id/nav_home_fragment"
+        android:name="com.example.loginmvpmvvm.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
     </fragment>
 </navigation>
