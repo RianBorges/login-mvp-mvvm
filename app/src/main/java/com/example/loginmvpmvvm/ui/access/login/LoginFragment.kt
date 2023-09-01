@@ -1,6 +1,5 @@
 package com.example.loginmvpmvvm.ui.access.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +7,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.example.loginmvpmvvm.R
 import com.example.loginmvpmvvm.databinding.FragmentLoginBinding
+import com.example.loginmvpmvvm.ui.MainActivity
 import com.example.loginmvpmvvm.ui.access.AccessFragment
-import com.example.loginmvpmvvm.ui.home.HomeActivity
+import com.example.loginmvpmvvm.ui.access.AccessFragmentDirections
+import com.example.loginmvpmvvm.ui.home.HomeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -51,10 +55,8 @@ class LoginFragment : Fragment() {
     private fun handleLoginSuccess() {
         viewModel.signInSuccess.observe(viewLifecycleOwner) {
             it?.idUser?.let {
-                val intent = Intent(requireContext(), HomeActivity::class.java).apply {
-                    putExtra("id", it)
-                }
-                startActivity(intent)
+                val action = AccessFragmentDirections.actionNavAccessFragmentToNavHomeFragment(it)
+                findNavController().navigate(action)
             } ?: kotlin.run {
                 Toast.makeText(requireContext(), "Email e Senha Inválido", Toast.LENGTH_SHORT)
                     .show()

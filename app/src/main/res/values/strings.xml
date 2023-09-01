@@ -14,5 +14,15 @@
     <string name="number_phone">Telefone:</string>
     <string name="confirm_password">Confirmar Senha:</string>
     <string name="register">Cadastrar</string>
+    <string name="txt_identificator">Identificador: %s</string>
+    <string name="txt_created_time">Criado Em: %s</string>
+    <string name="txt_modified_time">Modificado Em: %s</string>
+    <string name="txt_birthdate">Data De Nascimento: %s</string>
+    <string name="txt_phone">Telefone: %s</string>
+    <string name="txt_name">Nome: %s</string>
+    <string name="txt_type">Função: %s</string>
+    <string name="txt_row_identificator">Identificador: %s</string>
+    <string name="txt_email">Email: %s</string>
+    <string name="txt_status">Status: %s</string>
 
 </resources>
