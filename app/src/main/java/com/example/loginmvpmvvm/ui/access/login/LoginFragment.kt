@@ -7,14 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.example.loginmvpmvvm.R
 import com.example.loginmvpmvvm.databinding.FragmentLoginBinding
-import com.example.loginmvpmvvm.ui.MainActivity
 import com.example.loginmvpmvvm.ui.access.AccessFragment
 import com.example.loginmvpmvvm.ui.access.AccessFragmentDirections
-import com.example.loginmvpmvvm.ui.home.HomeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
