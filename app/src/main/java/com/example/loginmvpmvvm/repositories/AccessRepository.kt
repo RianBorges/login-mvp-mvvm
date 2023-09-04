@@ -14,7 +14,7 @@ class AccessRepositoryImpl(
     override suspend fun signIn(body: SignInRequest): ResultState<SignInResponse> {
         return try {
             val response = api.signIn(body)
-            if (response.code() == 200) {
+            if (response.code() in 200..299) {
                 ResultState.Success(response.body()!!)
             }else if (response.code() == 404){
                 ResultState.NotFound
